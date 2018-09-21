@@ -79,7 +79,6 @@ class MenuController
     else
       puts "Invalid Entry"
 
-      system "clear"
       view_entry_by_number
     end
   end
