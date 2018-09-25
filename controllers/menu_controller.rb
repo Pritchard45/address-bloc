@@ -105,6 +105,11 @@ class MenuController
     puts "#{entry.name} has been deleted"
   end
 
+  def nuke_entries
+    address_book.entries.clear
+    puts "All entries have been destroyed"
+  end
+
   def edit_entry(entry)
 
     print "Updated name: "
@@ -164,6 +169,7 @@ class MenuController
     puts "n - next entry"
     puts "d - delete entry"
     puts "e - edit this entry"
+    puts "z - delete all entries"
     puts "m - return to main menu"
 
     selection = gets.chomp
@@ -180,6 +186,8 @@ class MenuController
     when "m"
       system "clear"
       main_menu
+    when "z"
+      nuke_entries
     else
       system "clear"
       puts "#{selection} is not a valid input"
@@ -190,6 +198,7 @@ class MenuController
   def search_submenu(entry)
     puts "\nd - delete entry"
     puts "e - edit this entry"
+    puts "z - delete all entries"
     puts "m - return to main menu"
 
     selection = gets.chomp
@@ -206,11 +215,15 @@ class MenuController
     when "m"
       system "clear"
       main_menu
+    when "z"
+      system "clear"
+      nuke_entries(entries)
+      main_menu
     else
       system "clear"
       puts "#{selection} is not a valid input"
       puts entry.to_s
       search_submenu(entry)
     end
-  end 
+  end
 end
